@@ -60,27 +60,22 @@ const MORPH_COLORS = {
 // Example images data
 const EXAMPLES = [
     {
-        url: `${DEFAULT_API_URL}/file=enchi_albino_clown.png`,
+        url: 'images/enchi_albino_clown.png',
         label: 'Enchi, Albino, Clown',
         morphs: ['Enchi', 'Albino', 'Clown']
     },
     {
-        url: `${DEFAULT_API_URL}/file=mojave_ghi.png`,
+        url: 'images/mojave_ghi.png',
         label: 'Mojave, GHI',
         morphs: ['Mojave', 'GHI']
     },
     {
-        url: `${DEFAULT_API_URL}/file=hypo_banana_pastel_enchi.png`,
-        label: 'Hypo, Banana, Pastel, Enchi',
-        morphs: ['Hypo', 'Banana', 'Pastel', 'Enchi']
-    },
-    {
-        url: `${DEFAULT_API_URL}/file=yb_pastel_gravel.png`,
+        url: 'images/yb_pastel_gravel.png',
         label: 'YB, Pastel, Gravel',
         morphs: ['Yellow Belly', 'Pastel', 'Gravel']
     },
     {
-        url: `${DEFAULT_API_URL}/file=ivory.png`,
+        url: 'images/ivory.png',
         label: 'Super Yellow Belly',
         morphs: ['Yellow Belly']
     }
