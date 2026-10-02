@@ -4,6 +4,7 @@
 
 services:
   bp-morph-identifier:
+    image: bp-morph-identifier:latest
     build:
       context: .
       dockerfile: Dockerfile
