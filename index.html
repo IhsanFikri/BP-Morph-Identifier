@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ball Python Morph Identifier — Identifikasi Morph Ular Ball Python</title>
+    <meta name="description" content="Upload foto ball python Anda dan identifikasi morph-nya secara otomatis menggunakan AI. Kenali pola warna dan genetik ular ball python Anda dengan mudah.">
+    <meta name="keywords" content="ball python, morph identifier, snake morph, identifikasi morph, ular ball python, genetik ular">
+    <meta property="og:title" content="Ball Python Morph Identifier">
+    <meta property="og:description" content="Identifikasi morph ball python Anda menggunakan teknologi AI canggih.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Ambient Background Effects -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="app-container">
+        <!-- Navigation Bar -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" stroke="url(#brandGrad)" stroke-width="2" fill="none"/>
+                        <path d="M14 26C14 26 16 20 20 18C24 16 28 14 26 10C24 6 20 8 18 12C16 16 12 22 16 28C20 34 28 30 28 24" stroke="url(#brandGrad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                        <circle cx="24" cy="11" r="1.5" fill="#d4a84b"/>
+                        <defs>
+                            <linearGradient id="brandGrad" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#d4a84b"/>
+                                <stop offset="100%" stop-color="#34d399"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="brand-text">BP Morph<span class="brand-accent">ID</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#identifier" class="nav-link active">Identifier</a>
+                <a href="#morphs" class="nav-link">Daftar Morph</a>
+                <a href="#about" class="nav-link">Tentang</a>
+            </div>
+            <div class="nav-right">
+                <button class="settings-btn" id="settings-btn" title="Pengaturan API">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </button>
+                <div class="nav-status">
+                    <div class="status-dot"></div>
+                    <span>AI Model Active</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero" id="identifier">
+            <div class="hero-badge">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.5 5L13 5.5L9.5 8.5L10.5 13L7 10.5L3.5 13L4.5 8.5L1 5.5L5.5 5L7 1Z" fill="#d4a84b"/></svg>
+                <span>AI-Powered Identification</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">Ball Python</span>
+                <span class="title-line gradient-text">Morph Identifier</span>
+            </h1>
+            <p class="hero-subtitle">
+                Upload foto ball python Anda, dan AI kami akan menganalisis gambar untuk mengenali 
+                <strong>morph warna dan pola</strong> ular Anda secara akurat.
+            </p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-grid">
+                <!-- Left Panel — Upload -->
+                <section class="panel upload-panel">
+                    <div class="panel-header">
+                        <div class="panel-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        </div>
+                        <h2 class="panel-title">Upload Gambar</h2>
+                    </div>
+
+                    <div class="upload-zone" id="upload-zone">
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                        <div class="upload-content" id="upload-content">
+                            <div class="upload-icon-wrapper">
+                                <svg class="upload-icon" viewBox="0 0 64 64" fill="none">
+                                    <path d="M32 8C18.7 8 8 18.7 8 32s10.7 24 24 24 24-10.7 24-24S45.3 8 32 8z" stroke="url(#uploadGrad)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+                                    <path d="M32 22v20M22 32l10-10 10 10" stroke="url(#uploadGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <defs>
+                                        <linearGradient id="uploadGrad" x1="8" y1="8" x2="56" y2="56">
+                                            <stop offset="0%" stop-color="#d4a84b"/>
+                                            <stop offset="100%" stop-color="#34d399"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <p class="upload-text">Drag & drop gambar di sini</p>
+                            <p class="upload-subtext">atau <span class="upload-browse" id="browse-trigger">pilih file</span> dari perangkat</p>
+                            <div class="upload-formats">
+                                <span class="format-badge">JPG</span>
+                                <span class="format-badge">PNG</span>
+                                <span class="format-badge">WEBP</span>
+                            </div>
+                        </div>
+                        <!-- Preview State -->
+                        <div class="preview-container" id="preview-container" style="display:none;">
+                            <img id="preview-image" src="" alt="Preview">
+                            <button class="remove-btn" id="remove-btn" title="Hapus gambar">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Identify Button -->
+                    <button class="identify-btn" id="identify-btn" disabled>
+                        <div class="btn-glow"></div>
+                        <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <span class="btn-text">Identifikasi Morph</span>
+                        <div class="btn-shimmer"></div>
+                    </button>
+
+                    <!-- Example Images -->
+                    <div class="examples-section">
+                        <h3 class="examples-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                            Contoh Morph
+                        </h3>
+                        <div class="examples-grid" id="examples-grid">
+                            <!-- Examples will be injected by JS -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Right Panel — Results -->
+                <section class="panel results-panel">
+                    <div class="panel-header">
+                        <div class="panel-icon results-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                        </div>
+                        <h2 class="panel-title">Hasil Prediksi</h2>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="results-empty" id="results-empty">
+                        <div class="empty-illustration">
+                            <svg viewBox="0 0 120 120" fill="none">
+                                <circle cx="60" cy="60" r="50" stroke="#1e293b" stroke-width="2" stroke-dasharray="6 6"/>
+                                <path d="M45 65C45 65 48 55 55 50C62 45 70 42 68 36C66 30 60 33 58 38C56 43 50 52 55 60C60 68 70 64 70 58" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="67" cy="37" r="2" fill="#475569"/>
+                                <path d="M40 80h40" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M45 88h30" stroke="#1e293b" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <p class="empty-title">Belum Ada Hasil</p>
+                        <p class="empty-text">Upload gambar ball python dan klik "Identifikasi Morph" untuk melihat prediksi AI.</p>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div class="results-loading" id="results-loading" style="display:none;">
+                        <div class="loading-snake">
+                            <div class="snake-body">
+                                <div class="segment"></div>
+                                <div class="segment"></div>
+                                <div class="segment"></div>
+                                <div class="segment"></div>
+                                <div class="segment"></div>
+                            </div>
+                        </div>
+                        <p class="loading-text">Menganalisis gambar<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></p>
+                        <p class="loading-subtext">AI sedang mengenali pola morph</p>
+                    </div>
+
+                    <!-- Results Display -->
+                    <div class="results-display" id="results-display" style="display:none;">
+                        <div class="results-summary" id="results-summary">
+                            <!-- Summary will be injected -->
+                        </div>
+                        <div class="results-list" id="results-list">
+                            <!-- Result cards will be injected -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Morph List Section -->
+        <section class="morph-catalog" id="morphs">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="gradient-text">37 Morph</span> yang Dapat Dikenali
+                </h2>
+                <p class="section-subtitle">Model AI kami telah dilatih untuk mengenali morph-morph ball python berikut</p>
+            </div>
+            <div class="morph-grid" id="morph-grid">
+                <!-- Morph tags will be injected by JS -->
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#aboutGrad1)" stroke-width="2" stroke-linecap="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                            <defs><linearGradient id="aboutGrad1" x1="2" y1="2" x2="22" y2="22"><stop stop-color="#d4a84b"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>Deep Learning</h3>
+                    <p>Menggunakan model EfficientNet V2-L yang dilatih khusus dengan ribuan gambar ball python.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#aboutGrad2)" stroke-width="2" stroke-linecap="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            <defs><linearGradient id="aboutGrad2" x1="2" y1="3" x2="22" y2="21"><stop stop-color="#34d399"/><stop offset="1" stop-color="#059669"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>Multi-Label</h3>
+                    <p>Mampu mendeteksi beberapa morph sekaligus, karena ball python sering memiliki kombinasi morph.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#aboutGrad3)" stroke-width="2" stroke-linecap="round">
+                            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                            <defs><linearGradient id="aboutGrad3" x1="2" y1="2" x2="22" y2="22"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+                        </svg>
+                    </div>
+                    <h3>Cepat & Akurat</h3>
+                    <p>Hasil identifikasi muncul dalam hitungan detik dengan threshold per-class yang dioptimalkan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>🐍 Ball Python Morph Identifier &mdash; Powered by AI</p>
+                <p class="footer-sub">Model: EfficientNet V2-L &bull; Backend: <a href="https://huggingface.co/spaces/samfhy/ball-python-morph-identifier" target="_blank" rel="noopener">HuggingFace Spaces</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settings-modal" style="display:none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    Pengaturan API
+                </h3>
+                <button class="modal-close" id="modal-close">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Info Banner -->
+                <div class="modal-info">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span>API Token bersifat <strong>opsional</strong>. Space ini public dan bisa diakses tanpa token. Token hanya diperlukan jika Space menjadi private atau untuk rate limit lebih tinggi.</span>
+                </div>
+
+                <!-- API Token Input -->
+                <div class="form-group">
+                    <label class="form-label" for="hf-token">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        HuggingFace API Token
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" id="hf-token" class="form-input" placeholder="hf_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false">
+                        <button class="toggle-visibility" id="toggle-token" title="Tampilkan/Sembunyikan">
+                            <svg class="eye-open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg class="eye-closed" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                        </button>
+                    </div>
+                    <span class="form-hint">Dapatkan token di <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener">huggingface.co/settings/tokens</a></span>
+                </div>
+
+                <!-- Space URL -->
+                <div class="form-group">
+                    <label class="form-label" for="hf-space">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                        HuggingFace Space
+                    </label>
+                    <input type="text" id="hf-space" class="form-input" value="samfhy/ball-python-morph-identifier" placeholder="username/space-name">
+                    <span class="form-hint">Format: username/space-name</span>
+                </div>
+
+                <!-- Token Storage Info -->
+                <div class="modal-security">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>Token disimpan di <strong>localStorage</strong> browser Anda saja, tidak dikirim ke server manapun selain HuggingFace.</span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="modal-btn-secondary" id="btn-clear-token">Hapus Token</button>
+                <button class="modal-btn-primary" id="btn-save-settings">Simpan & Reconnect</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gradio Client SDK from CDN -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

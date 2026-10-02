@@ -1,0 +1,22 @@
+# ============================================================
+# Docker Compose — Ball Python Morph Identifier
+# ============================================================
+
+services:
+  bp-morph-identifier:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bp-morph-identifier
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "app.name=bp-morph-identifier"
+      - "app.description=Ball Python Morph Identifier UI"
