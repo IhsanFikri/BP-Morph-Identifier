@@ -541,6 +541,45 @@ a:hover {
     color: var(--accent-gold-light);
 }
 
+.upload-actions {
+    margin: var(--space-xs) 0 var(--space-md);
+    display: flex;
+    justify-content: center;
+}
+
+.paste-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--bg-glass-hover);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-full);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.paste-btn svg {
+    color: var(--accent-emerald);
+}
+
+.paste-btn:hover {
+    background: var(--accent-emerald-dim);
+    border-color: var(--accent-emerald);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(52, 211, 153, 0.2);
+}
+
+.paste-btn:active {
+    transform: translateY(0);
+}
+
 .upload-formats {
     display: flex;
     gap: var(--space-sm);

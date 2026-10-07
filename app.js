@@ -91,6 +91,7 @@ const previewImage = document.getElementById('preview-image');
 const removeBtn = document.getElementById('remove-btn');
 const identifyBtn = document.getElementById('identify-btn');
 const browseTrigger = document.getElementById('browse-trigger');
+const pasteTrigger = document.getElementById('paste-trigger');
 const examplesGrid = document.getElementById('examples-grid');
 const examplesSection = document.getElementById('examples-section');
 const examplesToggle = document.getElementById('examples-toggle');
@@ -533,7 +534,15 @@ function initEventListeners() {
         fileInput.click();
     });
 
-    uploadZone.addEventListener('click', () => {
+    if (pasteTrigger) {
+        pasteTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            handleClipboardPaste();
+        });
+    }
+
+    uploadZone.addEventListener('click', (e) => {
+        if (e.target.closest('#paste-trigger')) return;
         if (!uploadZone.classList.contains('has-image')) {
             fileInput.click();
         }
@@ -571,7 +580,7 @@ function initEventListeners() {
 
     identifyBtn.addEventListener('click', identifyMorphs);
 
-    // Paste gambar dari clipboard
+    // Paste gambar dari clipboard (Keyboard / Event shortcut)
     document.addEventListener('paste', (e) => {
         const items = e.clipboardData?.items;
         if (items) {
@@ -584,6 +593,44 @@ function initEventListeners() {
             }
         }
     });
+}
+
+
+/**
+ * Handle Paste dari Clipboard (Mobile & Desktop)
+ */
+async function handleClipboardPaste() {
+    try {
+        if (navigator.clipboard && navigator.clipboard.read) {
+            const clipboardItems = await navigator.clipboard.read();
+            let foundImage = false;
+
+            for (const item of clipboardItems) {
+                const imageType = item.types.find(type => type.startsWith('image/'));
+                if (imageType) {
+                    const blob = await item.getType(imageType);
+                    const file = new File([blob], 'pasted-image.png', { type: imageType });
+                    handleFileUpload(file);
+                    showToast('📋', 'Gambar berhasil ditempel dari clipboard!');
+                    foundImage = true;
+                    break;
+                }
+            }
+
+            if (!foundImage) {
+                showToast('⚠️', 'Tidak ada gambar di clipboard Anda. Salin gambar terlebih dahulu.');
+            }
+        } else {
+            showToast('ℹ️', 'Fitur tempel otomatis membutuhkan izin Clipboard pada browser ini.');
+        }
+    } catch (err) {
+        console.warn('Clipboard read error:', err);
+        if (err.name === 'NotAllowedError') {
+            showToast('⚠️', 'Izin akses clipboard ditolak oleh browser.');
+        } else {
+            showToast('ℹ️', 'Salin gambar ke clipboard dulu, lalu klik Tempel Gambar.');
+        }
+    }
 }
 
 
