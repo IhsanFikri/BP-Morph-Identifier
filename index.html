@@ -87,43 +87,68 @@
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
                         </div>
                         <h2 class="panel-title">Upload Gambar</h2>
+
+                        <!-- Mode Sub-Tabs -->
+                        <div class="upload-mode-tabs">
+                            <button type="button" class="mode-tab-btn active" id="tab-mode-upload">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                <span>File</span>
+                            </button>
+                            <button type="button" class="mode-tab-btn" id="tab-mode-paste">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                                <span>Tempel</span>
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="upload-zone" id="upload-zone">
-                        <input type="file" id="file-input" accept="image/*" hidden>
-                        <div class="upload-content" id="upload-content">
-                            <div class="upload-icon-wrapper">
-                                <svg class="upload-icon" viewBox="0 0 64 64" fill="none">
-                                    <path d="M32 8C18.7 8 8 18.7 8 32s10.7 24 24 24 24-10.7 24-24S45.3 8 32 8z" stroke="url(#uploadGrad)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
-                                    <path d="M32 22v20M22 32l10-10 10 10" stroke="url(#uploadGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <defs>
-                                        <linearGradient id="uploadGrad" x1="8" y1="8" x2="56" y2="56">
-                                            <stop offset="0%" stop-color="#d4a84b"/>
-                                            <stop offset="100%" stop-color="#34d399"/>
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
+                    <!-- Mode 1: Upload Zone -->
+                    <div class="mode-content" id="mode-upload-content">
+                        <div class="upload-zone" id="upload-zone">
+                            <input type="file" id="file-input" accept="image/*" hidden>
+                            <div class="upload-content" id="upload-content">
+                                <div class="upload-icon-wrapper">
+                                    <svg class="upload-icon" viewBox="0 0 64 64" fill="none">
+                                        <path d="M32 8C18.7 8 8 18.7 8 32s10.7 24 24 24 24-10.7 24-24S45.3 8 32 8z" stroke="url(#uploadGrad)" stroke-width="2" fill="none" stroke-dasharray="4 4"/>
+                                        <path d="M32 22v20M22 32l10-10 10 10" stroke="url(#uploadGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <defs>
+                                            <linearGradient id="uploadGrad" x1="8" y1="8" x2="56" y2="56">
+                                                <stop offset="0%" stop-color="#d4a84b"/>
+                                                <stop offset="100%" stop-color="#34d399"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <p class="upload-text">Drag & drop gambar di sini</p>
+                                <p class="upload-subtext">atau <span class="upload-browse" id="browse-trigger">pilih file</span> dari perangkat</p>
+                                <div class="upload-formats">
+                                    <span class="format-badge">JPG</span>
+                                    <span class="format-badge">PNG</span>
+                                    <span class="format-badge">WEBP</span>
+                                </div>
                             </div>
-                            <p class="upload-text">Drag & drop gambar di sini</p>
-                            <p class="upload-subtext">atau <span class="upload-browse" id="browse-trigger">pilih file</span> dari perangkat</p>
-                            <div class="upload-actions">
-                                <button type="button" class="paste-btn" id="paste-trigger" title="Tempel gambar dari clipboard">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                                    <span>Tempel Gambar (Paste)</span>
+                            <!-- Preview State -->
+                            <div class="preview-container" id="preview-container" style="display:none;">
+                                <img id="preview-image" src="" alt="Preview">
+                                <button class="remove-btn" id="remove-btn" title="Hapus gambar">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                                 </button>
                             </div>
-                            <div class="upload-formats">
-                                <span class="format-badge">JPG</span>
-                                <span class="format-badge">PNG</span>
-                                <span class="format-badge">WEBP</span>
-                            </div>
                         </div>
-                        <!-- Preview State -->
-                        <div class="preview-container" id="preview-container" style="display:none;">
-                            <img id="preview-image" src="" alt="Preview">
-                            <button class="remove-btn" id="remove-btn" title="Hapus gambar">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </div>
+
+                    <!-- Mode 2: Paste Zone -->
+                    <div class="mode-content" id="mode-paste-content" style="display: none;">
+                        <div class="paste-zone">
+                            <button type="button" class="paste-btn-large" id="paste-trigger">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                                <span>Ambil dari Clipboard</span>
                             </button>
+                            <p class="paste-or-divider"><span>atau</span></p>
+                            <div class="paste-box-wrapper">
+                                <div contenteditable="true" class="paste-input-box" id="paste-box">
+                                    <span class="paste-placeholder">Tahan lama (long-press) di sini &amp; pilih <strong>Tempel / Paste</strong></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

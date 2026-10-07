@@ -457,6 +457,42 @@ a:hover {
     letter-spacing: -0.01em;
 }
 
+.upload-mode-tabs {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+    background: var(--bg-glass-hover);
+    padding: 3px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+}
+
+.mode-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    border: none;
+    background: transparent;
+    color: var(--text-tertiary);
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.mode-tab-btn:hover {
+    color: var(--text-secondary);
+}
+
+.mode-tab-btn.active {
+    background: var(--accent-gold-dim);
+    color: var(--accent-gold);
+    border: 1px solid var(--border-accent);
+}
+
 /* ============================================================
    Upload Zone
    ============================================================ */
@@ -578,6 +614,103 @@ a:hover {
 
 .paste-btn:active {
     transform: translateY(0);
+}
+
+/* Dedicated Paste Zone */
+.paste-zone {
+    border: 2px dashed var(--border-medium);
+    border-radius: var(--radius-lg);
+    background: var(--bg-glass);
+    min-height: 260px;
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.paste-btn-large {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--gradient-emerald);
+    color: #061c12;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 16px rgba(52, 211, 153, 0.25);
+}
+
+.paste-btn-large:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(52, 211, 153, 0.4);
+}
+
+.paste-btn-large:active {
+    transform: translateY(0);
+}
+
+.paste-or-divider {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    position: relative;
+    width: 80%;
+    text-align: center;
+}
+
+.paste-or-divider::before,
+.paste-or-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 38%;
+    height: 1px;
+    background: var(--border-subtle);
+}
+
+.paste-or-divider::before { left: 0; }
+.paste-or-divider::after { right: 0; }
+
+.paste-box-wrapper {
+    width: 100%;
+    max-width: 340px;
+}
+
+.paste-input-box {
+    width: 100%;
+    min-height: 70px;
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.25);
+    border: 1.5px dashed var(--border-medium);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: text;
+    transition: all var(--transition-fast);
+    outline: none;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.paste-input-box:focus {
+    border-color: var(--accent-emerald);
+    background: rgba(52, 211, 153, 0.04);
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+}
+
+.paste-placeholder {
+    pointer-events: none;
+    line-height: 1.4;
 }
 
 .upload-formats {

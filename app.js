@@ -92,6 +92,11 @@ const removeBtn = document.getElementById('remove-btn');
 const identifyBtn = document.getElementById('identify-btn');
 const browseTrigger = document.getElementById('browse-trigger');
 const pasteTrigger = document.getElementById('paste-trigger');
+const tabModeUpload = document.getElementById('tab-mode-upload');
+const tabModePaste = document.getElementById('tab-mode-paste');
+const modeUploadContent = document.getElementById('mode-upload-content');
+const modePasteContent = document.getElementById('mode-paste-content');
+const pasteBox = document.getElementById('paste-box');
 const examplesGrid = document.getElementById('examples-grid');
 const examplesSection = document.getElementById('examples-section');
 const examplesToggle = document.getElementById('examples-toggle');
@@ -529,6 +534,23 @@ function initMorphGrid() {
 // ============================================================
 
 function initEventListeners() {
+    // Mode Sub-Tabs (File vs Tempel)
+    if (tabModeUpload && tabModePaste) {
+        tabModeUpload.addEventListener('click', () => {
+            tabModeUpload.classList.add('active');
+            tabModePaste.classList.remove('active');
+            modeUploadContent.style.display = 'block';
+            modePasteContent.style.display = 'none';
+        });
+
+        tabModePaste.addEventListener('click', () => {
+            tabModePaste.classList.add('active');
+            tabModeUpload.classList.remove('active');
+            modePasteContent.style.display = 'block';
+            modeUploadContent.style.display = 'none';
+        });
+    }
+
     browseTrigger.addEventListener('click', (e) => {
         e.stopPropagation();
         fileInput.click();
@@ -541,8 +563,27 @@ function initEventListeners() {
         });
     }
 
-    uploadZone.addEventListener('click', (e) => {
-        if (e.target.closest('#paste-trigger')) return;
+    // Direct paste handler di box khusus tempel (Mobile long-press / keyboard)
+    if (pasteBox) {
+        pasteBox.addEventListener('paste', (e) => {
+            const items = e.clipboardData?.items;
+            if (items) {
+                for (const item of items) {
+                    if (item.type.startsWith('image/')) {
+                        e.preventDefault();
+                        const file = item.getAsFile();
+                        if (file) {
+                            handleFileUpload(file);
+                            showToast('📋', 'Gambar berhasil ditempel!');
+                        }
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    uploadZone.addEventListener('click', () => {
         if (!uploadZone.classList.contains('has-image')) {
             fileInput.click();
         }
@@ -580,7 +621,7 @@ function initEventListeners() {
 
     identifyBtn.addEventListener('click', identifyMorphs);
 
-    // Paste gambar dari clipboard (Keyboard / Event shortcut)
+    // Paste gambar dari clipboard (Keyboard / Event shortcut global)
     document.addEventListener('paste', (e) => {
         const items = e.clipboardData?.items;
         if (items) {
@@ -704,6 +745,12 @@ async function loadExample(example) {
 // ============================================================
 
 function showPreview(src) {
+    if (tabModeUpload) {
+        tabModeUpload.classList.add('active');
+        if (tabModePaste) tabModePaste.classList.remove('active');
+        if (modeUploadContent) modeUploadContent.style.display = 'block';
+        if (modePasteContent) modePasteContent.style.display = 'none';
+    }
     previewImage.src = src;
     uploadContent.style.display = 'none';
     previewContainer.style.display = 'block';
