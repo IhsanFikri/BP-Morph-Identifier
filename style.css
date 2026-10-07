@@ -458,29 +458,37 @@ a:hover {
 }
 
 .upload-mode-tabs {
-    margin-left: auto;
     display: flex;
-    gap: 4px;
-    background: var(--bg-glass-hover);
-    padding: 3px;
-    border-radius: var(--radius-full);
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: var(--space-md);
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 4px;
+    border-radius: var(--radius-md);
     border: 1px solid var(--border-subtle);
 }
 
 .mode-tab-btn {
+    flex: 1;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
-    padding: 4px 12px;
-    border-radius: var(--radius-full);
-    border: none;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
     background: transparent;
     color: var(--text-tertiary);
     font-family: var(--font-primary);
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-fast);
+    white-space: nowrap;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .mode-tab-btn:hover {
@@ -488,9 +496,10 @@ a:hover {
 }
 
 .mode-tab-btn.active {
-    background: var(--accent-gold-dim);
+    background: var(--bg-card-hover);
     color: var(--accent-gold);
-    border: 1px solid var(--border-accent);
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-sm);
 }
 
 /* ============================================================
@@ -859,19 +868,23 @@ a:hover {
 }
 
 .examples-header {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: transparent;
-    border: none;
-    padding: 6px 0;
+    padding: 8px 0;
     cursor: pointer;
     color: inherit;
     text-align: left;
-    outline: none;
     border-radius: var(--radius-sm);
     transition: opacity var(--transition-fast);
+    -webkit-tap-highlight-color: transparent;
 }
 
 .examples-header:hover {
@@ -891,17 +904,18 @@ a:hover {
 }
 
 .examples-toggle-badge {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 0.72rem;
     font-weight: 500;
     color: var(--text-tertiary);
-    background: var(--bg-glass-hover);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border-subtle);
     padding: 4px 10px;
     border-radius: var(--radius-full);
     transition: all var(--transition-base);
+    white-space: nowrap;
 }
 
 .examples-header:hover .examples-toggle-badge {
