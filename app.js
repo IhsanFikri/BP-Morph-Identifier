@@ -92,6 +92,9 @@ const removeBtn = document.getElementById('remove-btn');
 const identifyBtn = document.getElementById('identify-btn');
 const browseTrigger = document.getElementById('browse-trigger');
 const examplesGrid = document.getElementById('examples-grid');
+const examplesSection = document.getElementById('examples-section');
+const examplesToggle = document.getElementById('examples-toggle');
+const toggleText = document.getElementById('toggle-text');
 const resultsEmpty = document.getElementById('results-empty');
 const resultsLoading = document.getElementById('results-loading');
 const resultsDisplay = document.getElementById('results-display');
@@ -484,6 +487,23 @@ function initExamples() {
         card.addEventListener('click', () => loadExample(example));
         examplesGrid.appendChild(card);
     });
+
+    if (examplesToggle && examplesSection) {
+        examplesToggle.addEventListener('click', () => {
+            const isCollapsed = examplesSection.classList.toggle('is-collapsed');
+            if (toggleText) {
+                toggleText.textContent = isCollapsed ? 'Tampilkan' : 'Sembunyikan';
+            }
+            examplesToggle.setAttribute('aria-expanded', (!isCollapsed).toString());
+        });
+
+        // Sembunyikan secara otomatis di tampilan mobile (<= 900px) agar area upload dan hasil langsung terlihat
+        if (window.innerWidth <= 900) {
+            examplesSection.classList.add('is-collapsed');
+            if (toggleText) toggleText.textContent = 'Tampilkan';
+            examplesToggle.setAttribute('aria-expanded', 'false');
+        }
+    }
 }
 
 

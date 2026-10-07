@@ -678,12 +678,32 @@ a:hover {
 }
 
 /* ============================================================
-   Examples Section
+   Examples Section & Toggle Hiding
    ============================================================ */
 .examples-section {
     margin-top: var(--space-lg);
-    padding-top: var(--space-lg);
+    padding-top: var(--space-md);
     border-top: 1px solid var(--border-subtle);
+}
+
+.examples-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    border: none;
+    padding: 6px 0;
+    cursor: pointer;
+    color: inherit;
+    text-align: left;
+    outline: none;
+    border-radius: var(--radius-sm);
+    transition: opacity var(--transition-fast);
+}
+
+.examples-header:hover {
+    opacity: 0.85;
 }
 
 .examples-title {
@@ -693,15 +713,59 @@ a:hover {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: var(--space-md);
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    margin-bottom: 0;
 }
 
-.examples-grid {
+.examples-toggle-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: var(--bg-glass-hover);
+    border: 1px solid var(--border-subtle);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+}
+
+.examples-header:hover .examples-toggle-badge {
+    border-color: var(--border-medium);
+    color: var(--text-secondary);
+}
+
+.toggle-chevron {
+    transition: transform var(--transition-base);
+}
+
+.examples-grid-wrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin 0.35s ease;
+    opacity: 1;
+    margin-top: var(--space-md);
+}
+
+.examples-grid-wrapper > .examples-grid {
+    overflow: hidden;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: var(--space-sm);
+}
+
+/* Collapsed State */
+.examples-section.is-collapsed .examples-grid-wrapper {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    margin-top: 0;
+    pointer-events: none;
+}
+
+.examples-section.is-collapsed .toggle-chevron {
+    transform: rotate(-90deg);
 }
 
 .example-card {

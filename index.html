@@ -130,13 +130,21 @@
                     </button>
 
                     <!-- Example Images -->
-                    <div class="examples-section">
-                        <h3 class="examples-title">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                            Contoh Morph
-                        </h3>
-                        <div class="examples-grid" id="examples-grid">
-                            <!-- Examples will be injected by JS -->
+                    <div class="examples-section" id="examples-section">
+                        <button type="button" class="examples-header" id="examples-toggle" aria-expanded="true" aria-controls="examples-grid-wrapper">
+                            <div class="examples-title">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                                <span>Contoh Morph</span>
+                            </div>
+                            <div class="examples-toggle-badge">
+                                <span class="toggle-text" id="toggle-text">Sembunyikan</span>
+                                <svg class="toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </div>
+                        </button>
+                        <div class="examples-grid-wrapper" id="examples-grid-wrapper">
+                            <div class="examples-grid" id="examples-grid">
+                                <!-- Examples will be injected by JS -->
+                            </div>
                         </div>
                     </div>
                 </section>
